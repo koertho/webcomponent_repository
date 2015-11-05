@@ -8,7 +8,7 @@ module.exports = {
 	{
 		components.insert(component, function(err, doc) {
 			if (err) return callback(err);
-			console.log(doc);
+			//console.log(doc);
 			return callback(null);
 		});
 	},

@@ -1,2 +1,6 @@
+# Folders
 node_modules
+
+# Files
 test.js
+npm-debug.log

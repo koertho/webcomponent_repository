@@ -1,17 +1,13 @@
 var mongo = require('mongodb');
 var assert = require('assert');
+var jsonfile = require('jsonfile');
 var db = require('monk')('localhost:27017/components_db');
 var components = db.get('components');
 
 
 
-components.aggregate([
-	{
-		$unwind: "$subscription"
-	}, 
-	{
-		$group: {
-			"name": "$subscription.name"
-		}
-	}
-])
+components.find({}, function(err, data) {
+	if (err) console.error(err);
+	console.log(data);
+	db.close();
+});
