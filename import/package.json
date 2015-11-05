@@ -1,11 +1,10 @@
 {
-  "name": "webcomponentrepository",
+  "name": "Web Component Import",
   "version": "1.0.0",
-  "description": "A repository for web components",
-  "main": "test.js",
+  "description": "An importer for for web component repository.",
+  "main": "readData.js",
   "dependencies": {
     "jsdoc-parse": "^1.1.1",
-    "json-stream": "^1.0.0",
     "jsonfile": "^2.2.3"
   },
   "devDependencies": {},

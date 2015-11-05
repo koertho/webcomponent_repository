@@ -1,7 +1,9 @@
+// Imports
 var parser = require('./parser.js');
 var db = require('./database.js');
 var jsonfile = require('jsonfile')
 
+// Config
 var file = './components.json'
 
 

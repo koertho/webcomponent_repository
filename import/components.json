@@ -1,18 +1,18 @@
 [
 	{
 		"name": "easy-pagination",
-		"path": "../../GitHub/easy-pagination/easy-pagination.html"
+		"path": "../../easy-pagination/easy-pagination.html"
 	},
 	{
 		"name": "twitter-tweets",
-		"path": "../../GitHub/polymer-examples/twitter-tweets-element.html"
+		"path": "../../polymer-examples/twitter-tweets-element.html"
 	},
 	{
 		"name": "semantic-extraction",
-		"path": "../../GitHub/polymer-examples/semantic-extraction-element.html"
+		"path": "../../polymer-examples/semantic-extraction-element.html"
 	},
 	{
 		"name": "wikipedia-extract",
-		"path": "../../GitHub/polymer-examples/wikipedia-extract-element.html"
+		"path": "../../polymer-examples/wikipedia-extract-element.html"
 	}
 ]
