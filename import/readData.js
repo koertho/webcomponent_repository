@@ -24,7 +24,15 @@ function (err, result)
 		{
 			if (err) console.error(err);
 			console.log(data);
-			db.connection.close();
+			db.publish_keys.find({}, function(err, data){
+				if (err) console.error(err);
+				console.log(data);
+				db.subscribe_keys.find({}, function(err,data){
+					if (err) console.error(err);
+					console.log(data);
+					db.connection.close();
+				})
+			})
 		});
 	}
 });
@@ -59,15 +67,26 @@ function readAndSaveData(obj, callback)
 		function(value, key, cb)
 		{
 			console.log("Parsing entry " + key);
-			parser(value.path, function(err, component) 
+			parser(value.path, function(err, component, publish_keys, subscribe_keys) 
 			{
 				if (err) return cb("Failure at parsing the data: " + err);
+				
+				console.log("Publish keys: " + publish_keys);
+				console.log("Subscripe keys: " + subscribe_keys);
+				
+				
 				component.name = value.name;	
 				console.log("Saving entry " + key)
 				db.insertComponent(component, function(err, data){
-					if (err) cb("Failure at writing to the database: " + err)
-					else cb(null);
-				})
+					if (err) return cb("Failure at writing to the database: " + err)
+					db.insertPublishKeys(publish_keys, function(err){
+						if (err) return cb("Failure at writing publish keys to the database: " + err);
+						db.insertSubscribeKeys(subscribe_keys, function(err){
+							if (err) return cb("Failure at writing subscribe keys to the database: " + err);
+							return cb(null);
+						});
+					});
+				});
 			});
 		},
 		function (err)

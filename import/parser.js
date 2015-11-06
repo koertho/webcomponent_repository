@@ -13,6 +13,8 @@ var parser = function(path, callback)
 	stream.on('end', function() {
 		var data =  JSON.parse(content);
 		var component = {};
+		var publish_keys = [];
+		var subscribe_keys = [];
 		component.properties = [];
 		component.methods = [];
 		data.forEach(function(entry, index) {
@@ -33,6 +35,7 @@ var parser = function(path, callback)
 									var subscription = {};
 									subscription.name = entries[0];
 									subscription.type = entries[1];
+									subscribe_keys.push(subscription);
 									subscription.desciption = '';
 									entries.forEach(function(word, i){
 										if (i > 1) subscription.desciption += ' '+word;
@@ -44,6 +47,7 @@ var parser = function(path, callback)
 									var publish = {};
 									publish.name = entries[0];
 									publish.type = entries[1];
+									publish_keys.push(publish);
 									publish.desciption = '';
 									entries.forEach(function(word, i){
 										if (i > 1) publish.desciption += ' '+word;
@@ -83,7 +87,7 @@ var parser = function(path, callback)
 				component.methods.push(method);
 			}
 		});
-		return callback(null, component);
+		return callback(null, component, publish_keys, subscribe_keys);
 	});
 }
 
