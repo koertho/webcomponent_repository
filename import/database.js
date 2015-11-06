@@ -24,7 +24,12 @@ module.exports = {
 		components.remove({}, function(err)
 		{
 			if (err) return callback(err);
-			return callback(null);
+			publish_keys.remove({}, function(err){
+				if (err) return callback(err);
+				subscribe_keys.remove({}, function(err){
+					return callback(null);
+				})
+			})
 		})
 	},
 	insertPublishKeys: function(keys, callback)
