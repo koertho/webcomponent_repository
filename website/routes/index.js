@@ -1,17 +1,39 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
+var componentList = function(req, res, next) {
 	var db = req.db;
 	var components = db.get('components');
 	components.find({},{}, function(err, data) {
-		res.render('index', { 
+		res.render('components', { 
 			"title": 'Komponenten',
 			 "components": data
 		});
 	});
-});
+};
+
+
+router.get('/', componentList);
+router.get('/components', componentList);
+
+router.get('/components/:component', function(req, res, next) {
+	var db = req.db;
+	var components = db.get('components');
+	components.find({name: req.params.component}, function(err, docs){
+		if (err) console.err("Fehler beim Abfragen der Komponente aus der Datenbank: " + err);
+		res.render('component',{
+			"component": docs[0]
+		});
+	});
+	
+})
+
+
+
+
+
+
+
 
 /* GET Hello World page. */
 router.get('/helloworld', function(req, res) {

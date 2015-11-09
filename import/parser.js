@@ -31,27 +31,24 @@ var parser = function(path, callback)
 							switch (tag.tag)
 							{
 								case "subscribe":
-									var entries = tag.value.split(' ');
+									var entries = tag.value.split(' ',2);
 									var subscription = {};
 									subscription.name = entries[0];
 									subscription.type = entries[1];
 									subscribe_keys.push(subscription);
-									subscription.desciption = '';
-									entries.forEach(function(word, i){
-										if (i > 1) subscription.desciption += ' '+word;
-									});
+									var entry_length = entries[0].length + entries[1].length + 2;
+									subscription.description = tag.value.slice(entry_length);
+									console.log(subscription.description);
 									component.subscription.push(subscription);
 									break;
 								case "publish":
-									var entries = tag.value.split(' ');
+									var entries = tag.value.split(' ',2);
 									var publish = {};
 									publish.name = entries[0];
 									publish.type = entries[1];
 									publish_keys.push(publish);
-									publish.desciption = '';
-									entries.forEach(function(word, i){
-										if (i > 1) publish.desciption += ' '+word;
-									});
+									var entry_length = entries[0].length + entries[1].length + 2;
+									publish.description = tag.value.slice(entry_length);
 									component.publish.push(publish);
 									break;
 							}

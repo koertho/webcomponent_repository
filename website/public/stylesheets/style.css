@@ -5,4 +5,66 @@ body {
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+
+ul.navigation {
+	list-style-type: none;
+	float: left;
+	padding: 0px;
+	border-left: 2px solid black;
+}
+
+ul.navigation li {
+	float: left;
+	border-width: 2px 2px 2px 0;
+	border-style: solid;
+	border-color: black;
+	padding: 5px 8px;
+	border-collapse: collapse;
+	
+}
+
+ul.navigation li a {
+	color: black;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+div.clearfix {
+	clear: both;
+}
+
+a.component_link {
+	font-weight: bold;
+	color: midnightblue;
+}
+
+table.component_list {
+	border-collapse: collapse;
+}
+
+table.component_list tr td {
+	border-bottom: 1px solid grey;
+	padding-top: 1em;
+}
+
+table.component_list tr:last-child td {
+	border-bottom: none;
+}
+
+table.keywords {
+	border-collapse: collapse;
+}
+
+table.keywords td {
+	border-bottom: 1px solid grey;
+	padding: 0.5em 1em 0.1em 0;
+}
+table.keywords td:last-child {
+	padding: 0.5em 0 0.1em 0;
+}
+
+table.keywords tr:last-child td {
+	border-bottom: none;
 }

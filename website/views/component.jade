@@ -1,0 +1,32 @@
+extends layout
+
+block content
+	h2= component.name
+
+	p= component.description
+	
+	if component.author
+		p
+			b= "Author: "
+			= component.author
+	
+	hr
+	
+	if component.publish.length
+		b= "Publish keys"
+		table.keywords
+			each key in component.publish
+				tr
+					td= key.name
+					td= key.type
+					td= key.description
+					
+	if component.subscription.length
+		b= "Subscribe keys"
+		table.keywords
+			each key in component.subscription
+				tr
+					td= key.name
+					td= key.type
+					td= key.description
+

@@ -1,8 +1,14 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    a(href="/newuser")="Neuer User"
-    block content
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		h1="Web Component Repository"
+		ul.navigation
+			li
+				a(href="/")="Übersicht"
+			li
+				a(href="/keywords")="Keywords"
+		div.clearfix
+		block content
