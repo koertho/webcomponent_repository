@@ -3,6 +3,7 @@ var parser = require('./parser.js');
 var db = require('./database.js');
 var jsonfile = require('jsonfile');
 var async = require('async');
+var path = require('path');
 
 // Config
 var file = './components.json'
@@ -75,7 +76,8 @@ function readAndSaveData(obj, callback)
 				console.log("Subscripe keys: " + subscribe_keys);
 				
 				
-				component.name = value.name;	
+				component.name = value.name;
+				component.url = path.resolve(value.path);	
 				console.log("Saving entry " + key)
 				db.insertComponent(component, function(err, data){
 					if (err) return cb("Failure at writing to the database: " + err)

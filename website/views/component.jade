@@ -1,6 +1,9 @@
 extends layout
 
 block content
+	div.download
+		a(href="#{component.url}") Download
+	
 	h2= component.name
 
 	p= component.description
@@ -35,7 +38,7 @@ block content
 		table.keywords
 			each key in component.publish
 				tr
-					td= key.name
+					td: a(href="/keywords/#{key.name}") #{key.name}
 					td= key.type
 					td= key.description
 					
@@ -44,7 +47,7 @@ block content
 		table.keywords
 			each key in component.subscription
 				tr
-					td= key.name
+					td: a(href="/keywords/#{key.name}") #{key.name}
 					td= key.type
 					td= key.description
 

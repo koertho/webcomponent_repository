@@ -1,6 +1,6 @@
 {
   "name": "web_component_import",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "An importer for for web component repository.",
   "main": "readData.js",
   "dependencies": {

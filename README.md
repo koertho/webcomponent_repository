@@ -1,11 +1,12 @@
 # webcomponent_repository
-A repository for web components. Part of an study project.
+A repository for web components. 
+It brings support for `Polymer.SmartComponentBehavior` and the appility to find compatible publisher or subscripter components.
+Part of my study project at [TU Chemnitz](http://tu-chemnitz.de).
 
 ## Current state
 
-The project is still in an early state. 
-Import already works (but is still not finished), the website is just listing the components
-stored in the database.
+The importer import a static list of Polymer-HTML-Pages into the database.
+The website list the components and publish/subscribe-keys and provide the ability to find corresponding components.
 
 ## Setup
 
