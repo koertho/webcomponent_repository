@@ -3,6 +3,10 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+h4.entries {
+	margin-bottom: 0.5em;
+}
+
 a {
   color: #00B7FF;
   text-decoration: none;
@@ -58,13 +62,12 @@ table.keywords {
 }
 
 table.keywords td {
-	border-bottom: 1px solid grey;
-	padding: 0.5em 1em 0.1em 0;
-}
-table.keywords td:last-child {
-	padding: 0.5em 0 0.1em 0;
+	padding: 0.3em 0.5em;
 }
 
-table.keywords tr:last-child td {
-	border-bottom: none;
+table.keywords tr:nth-child(even) {
+	background-color: grey;
+}
+table.keywords tr:nth-child(odd) {
+	background-color: lightgrey;
 }

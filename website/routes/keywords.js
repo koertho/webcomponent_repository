@@ -1,14 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
+
+
+
+
 router.get('/', function(req, res, next) {
 	var db = req.db;
-	var pub_keys = db.get('publish_keys');
-	var sub_keys = db.get('subscription_keys');
-	res.render('keywords', {
-		"publish_keys": pub_keys,
-		"subscripe_keys": sub_keys
-	})
+	var keywords = db.get('keywords');
+	keywords.find({}, function(err, keys){
+		if (err) console.err("Fehler beim Abfragen der keys aus der Datenbank: " + err);
+		res.render('keywords', {
+			"keys": keys
+		});
+	});
 });
 
 module.exports = router;

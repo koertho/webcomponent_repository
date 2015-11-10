@@ -15,6 +15,7 @@ var parser = function(path, callback)
 		var component = {};
 		var publish_keys = [];
 		var subscribe_keys = [];
+		var keywords = [];
 		component.properties = [];
 		component.methods = [];
 		data.forEach(function(entry, index) {
@@ -36,6 +37,7 @@ var parser = function(path, callback)
 									subscription.name = entries[0];
 									subscription.type = entries[1];
 									subscribe_keys.push(subscription);
+									keywords.push(subscription);
 									var entry_length = entries[0].length + entries[1].length + 2;
 									subscription.description = tag.value.slice(entry_length);
 									console.log(subscription.description);
@@ -47,6 +49,7 @@ var parser = function(path, callback)
 									publish.name = entries[0];
 									publish.type = entries[1];
 									publish_keys.push(publish);
+									keywords.push(publish);
 									var entry_length = entries[0].length + entries[1].length + 2;
 									publish.description = tag.value.slice(entry_length);
 									component.publish.push(publish);
@@ -64,9 +67,9 @@ var parser = function(path, callback)
 						property.name = id[1];
 						property.desc = entry.description;
 						if (entry.type)
-							property.datatype = entry.type.names[0];
+							property.type = entry.type.names[0];
 						else 
-							property.datatype = null;
+							property.type = null;
 						component.properties.push(property);
 					}
 				}
@@ -78,13 +81,13 @@ var parser = function(path, callback)
 				method.name = id[0];
 				method.desc = entry.description;
 				if (entry.type)
-					method.datatype = entry.type.names[0];
+					method.type = entry.type.names[0];
 				else 
-					method.datatype = null;	
+					method.type = null;	
 				component.methods.push(method);
 			}
 		});
-		return callback(null, component, publish_keys, subscribe_keys);
+		return callback(null, component, publish_keys, subscribe_keys, keywords);
 	});
 }
 

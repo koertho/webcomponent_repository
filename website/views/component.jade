@@ -12,8 +12,26 @@ block content
 	
 	hr
 	
+	if component.properties.length
+		h4.entries Properties
+		table.keywords
+			each key in component.properties
+				tr
+					td= key.name
+					td= key.type
+					td= key.description
+	
+	if component.methods.length
+		h4.entries Methods
+		table.keywords
+			each key in component.methods
+				tr
+					td= key.name
+					td= key.type
+					td= key.description
+	
 	if component.publish.length
-		b= "Publish keys"
+		h4.entries Publish keys
 		table.keywords
 			each key in component.publish
 				tr
@@ -22,7 +40,7 @@ block content
 					td= key.description
 					
 	if component.subscription.length
-		b= "Subscribe keys"
+		h4.entries Subscribe keys
 		table.keywords
 			each key in component.subscription
 				tr

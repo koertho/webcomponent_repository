@@ -1,10 +1,10 @@
 extends layout
 
 block content
-	h2= "Keyswords"
-  
-	table.subscipte_keys
-		each key in publish_keys
+	h2= "Keywords"
+	
+	table.keywords
+		each key in keys
 			tr
-				td
-  
+				td= key.name
+				td= key.type
