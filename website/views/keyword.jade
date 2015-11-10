@@ -1,0 +1,29 @@
+extends layout
+
+block content
+	h2 #{title}
+	
+	h4.entries Publish
+	if publish.length
+		table.keywords
+			each component in publish
+				tr
+					td
+						a(href="/components/"+component.name).component_link= component.name
+					td #{component.description}
+	else
+		p Keine Einträge
+	
+	h4.entries Subscription		
+	if subscription.length
+		table.keywords
+			each component in subscription
+				tr
+					td
+						a(href="/components/"+component.name).component_link= component.name
+					td #{component.description}
+	else
+		p Keine Einträge
+					
+					
+

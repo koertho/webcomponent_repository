@@ -5,10 +5,14 @@ var async = require('async');
 
 
 
-db.keywords.find({}, function(err, data)
-{
-	console.log(data);
-})
+db.components.find({
+		"publish_keys": {
+			"$elemMatch":{
+				"name": key
+		}}}, function(err, docs){
+		if (err) console.err("Fehler beim Suchen nach Komponenten in der Datenbank: " + err);
+		console.log(docs)
+	});
 
 
 

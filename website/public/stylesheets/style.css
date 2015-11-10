@@ -5,10 +5,11 @@ body {
 
 h4.entries {
 	margin-bottom: 0.5em;
+	font-size: 1.1em;
 }
 
 a {
-  color: #00B7FF;
+  color: midnightblue;
   text-decoration: none;
 }
 
@@ -66,7 +67,7 @@ table.keywords td {
 }
 
 table.keywords tr:nth-child(even) {
-	background-color: grey;
+	background-color: #b0b0b0;
 }
 table.keywords tr:nth-child(odd) {
 	background-color: lightgrey;

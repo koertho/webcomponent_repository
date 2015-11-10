@@ -9,7 +9,6 @@ var mongo = require('mongodb');
 var db = require('monk')('localhost:27017/components_db');
 
 var routes = require('./routes/index');
-var components = require('./routes/components');
 var keywords = require('./routes/keywords');
 
 var app = express();
@@ -33,7 +32,6 @@ app.use(function(req,res,next){
 });
 
 app.use('/', routes);
-app.use('/components', components)
 app.use('/keywords', keywords);
 
 // catch 404 and forward to error handler
