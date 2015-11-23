@@ -1,12 +1,17 @@
 {
-  "name": "web_component_import",
+  "name": "web_component_repository_import",
   "version": "1.0.0",
   "description": "An importer for for web component repository.",
   "main": "readData.js",
   "dependencies": {
     "async": "^1.5.0",
+    "htmlparser2": "^3.8.3",
     "jsdoc-parse": "^1.1.1",
-    "jsonfile": "^2.2.3"
+    "json-comments": "^0.2.1",
+    "jsonfile": "^2.2.3",
+    "jsonic": "^0.2.2",
+    "remove-json-comments": "^1.0.0",
+    "strip-json-comments": "^1.0.4"
   },
   "devDependencies": {},
   "scripts": {

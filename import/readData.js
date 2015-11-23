@@ -1,6 +1,6 @@
 // Imports
-var parser = require('./parser.js');
-var db = require('./database.js');
+var parser = require('./lib/parser.js');
+var db = require('./lib/database.js');
 var jsonfile = require('jsonfile');
 var async = require('async');
 var path = require('path');
@@ -47,7 +47,7 @@ function openComponentList(callback)
 		if (err) 
 			return callback("Failure at reading component list: " + err);
 		else 
-		return callback(null, obj);
+			return callback(null, obj);
 	});
 };
 
