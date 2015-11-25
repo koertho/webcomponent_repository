@@ -9,7 +9,6 @@
     "jsdoc-parse": "^1.1.1",
     "json-comments": "^0.2.1",
     "jsonfile": "^2.2.3",
-    "jsonic": "^0.2.2",
     "remove-json-comments": "^1.0.0",
     "strip-json-comments": "^1.0.4"
   },
