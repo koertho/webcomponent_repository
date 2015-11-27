@@ -5,7 +5,7 @@ var path = require('path');
 var html_extract =  function (path, callback)
 {
 	var content = fs.readFileSync(path, { encoding: 'utf8' });
-	var polymerContent = '';
+	var script_content = '';
 	var sem = false;
 	
 	var parser = new htmlparser.Parser({
@@ -15,14 +15,14 @@ var html_extract =  function (path, callback)
 		},
 		ontext: function(text){
 			if (sem === true)
-				polymerContent += text;
+				script_content += text;
 		},
 		onclosetag: function(name){
 			if (name === "script")
 				sem = false;
 		},
 		onend: function (){
-			return callback(null, polymerContent);
+			return callback(null, script_content);
 		}
 	});
 	parser.write(content);
