@@ -118,12 +118,8 @@ var do_jsdoc = function (jsdoc)
 			method.desc = entry.description;
 			if (entry.params)
 				method.params = entry.params;
-			else 
-				method.params = null;	
 			if (entry.returns)
 				method.returns = entry.returns;
-			else 
-				method.returns = null;	
 			component.methods.push(method);
 			return cb(null);
 		}
