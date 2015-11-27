@@ -22,15 +22,13 @@ async.waterfall(
 			callback(err, data);
 		})
 	},
-/*	function(obj, callback) {
+	function(obj, callback) {
 		
 		console.log("Cleaning database")
-		db.deleteAllComponents(function(err) 
-		{
-			if (err) return callback("Failure at cleaning the database: " +err);
-			else callback(null, obj);
+		db.deleteDatabase(function(err) {
+			callback(err, obj);
 		});
-	},*/
+	},
 	function (obj, callback) {
 		console.log("Parse data and save to database");
 		async.forEachOf(obj, 
@@ -39,34 +37,33 @@ async.waterfall(
 					html: function(call)
 					{
 						html_content(value.path, function(err, script_content) {
-							if (err) return cb(err);
+							if (err) return call(err);
 							polymer_content(script_content, function(err, data) {
-								call(err, data);
+								return call(err, data);
 							});
 						});
 					},
 					jsdoc: function(call)
 					{
 						jsdoc_content(value.path, function(err, data){
-							call(err, data);
+							return call(err, data);
 						});
 					}
 				}, 
 				function(err, res){
-					if (err) throw err;
+					if (err) return cb(err);
 					else
 					{
 						//console.log('Iteration: \n' + JSON.stringify(res.html) + '\n');
-						//res.html.properties.type
-						
-						//console.log(JSON.stringify(res.jsdoc))
-						
-						
-						merge(res.html, res.jsdoc, function(err, data)
+						merge(res.html, res.jsdoc, function(err, component, keywords)
 						{
 							
-							//console.log(data);
-							return cb(err);
+							db.insertComponent(JSON.parse(JSON.stringify(component)), function(err, data){
+								if (err) return cb("Failure at writing to the database (" + component.name + "): " + err);
+								db.insertKeywords(keywords, function(err){
+									return cb(err);
+								});
+							});
 						})
 					}
 				});
@@ -80,5 +77,5 @@ async.waterfall(
 	}
 ], 
 function (err, result) {
-	//console.log(result);
+	console.log('Done!');
 });

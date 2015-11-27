@@ -16,10 +16,17 @@ module.exports = {
 	insertComponent: function(component, callback)
 	{
 		components.insert(component, function(err, doc) {
-			if (err) return callback(err);
-			//console.log(doc);
-			return callback(null);
+			return callback(err);
 		});
+	},
+	deleteDatabase: function(callback){
+		components.remove({}, function(err)
+		{
+			if (err) return callback(err);
+			keywords.remove({}, function(err){
+				return callback(err);
+			})
+		})
 	},
 	deleteAllComponents: function(callback)
 	{
@@ -29,88 +36,10 @@ module.exports = {
 			publish_keys.remove({}, function(err){
 				if (err) return callback(err);
 				subscribe_keys.remove({}, function(err){
-					return callback(null);
+					return callback(err);
 				})
 			})
 		})
-	},
-	insertPublishKeys: function(keys, callback)
-	{
-		if(Array.isArray(keys))
-		{
-			async.each(keys, 
-			function(value, cb) {
-				console.log("Insert publish key: " + JSON.stringify(value));
-				publish_keys.findAndModify(
-				{ 
-					query: {
-						"name": value.name,
-						"type": value.type
-					},
-					update: { $setOnInsert: {
-						"name": value.name,
-						"type": value.type} }
-				},
-				{
-					new: true, 
-					upsert: true
-				},
-				function(err, doc){
-					if (err) 
-						return cb("Error while inserting publish-keys to the database: " + err);
-					console.log("Insert publish keys finished");
-					return cb(null);
-				});
-			},
-			function(err) {
-				if (err) callback(err);
-				return callback(null);
-			});
-		}
-		else 
-		{
-			console.log("Wrong publish data format. Array expected!");
-			return callback(null); //callback("Wrong data format. Array expected!");
-		}
-	},
-	insertSubscribeKeys: function(keys, callback)
-	{
-		if(Array.isArray(keys))
-		{
-			async.each(keys, 
-			function(value, cb) {
-				console.log("Insert subscribe key: " + JSON.stringify(value));
-				subscribe_keys.findAndModify(
-				{ 
-					query: {
-						"name": value.name,
-						"type": value.type
-					},
-					update: { $setOnInsert: {
-						"name": value.name,
-						"type": value.type} }
-				},
-				{
-					new: true, 
-					upsert: true
-				},
-				function(err, doc){
-					if (err) 
-						return cb("Error while inserting subscribe-keys to the database: " + err);
-					console.log("Insert subscribe keys finished");
-					return cb(null);
-				});
-			},
-			function(err) {
-				if (err) callback(err);
-				return callback(null);
-			});
-		}
-		else 
-		{
-			console.log("Wrong subscribe data format. Array expected!");
-			return callback(null); //callback("Wrong data format. Array expected!");
-		}
 	},
 	insertKeywords: function(keys, callback)
 	{

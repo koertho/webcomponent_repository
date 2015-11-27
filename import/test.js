@@ -1,9 +1,10 @@
-var html = require('./lib/html_script_extract');
+
+var db = require('./lib/database.js');
+
+db.components.find({}, function(err, data) {
+	console.log(data);
+});
 
 
 
 
-var filePath = "../../easy-pagination/easy-pagination.html";
-
-html(filePath, function(err, data) {
-})
