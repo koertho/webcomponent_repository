@@ -47,7 +47,7 @@ module.exports = {
 		{
 			async.each(keys, 
 			function(value, cb) {
-				console.log("Insert key: " + JSON.stringify(value));
+				//console.log("Insert key: " + JSON.stringify(value));
 				keywords.findAndModify(
 				{ 
 					query: {
@@ -65,7 +65,7 @@ module.exports = {
 				function(err, doc){
 					if (err) 
 						return cb("Error while inserting keys to the database: " + err);
-					console.log("Insert keys finished");
+					//console.log("Insert keys finished");
 					return cb(null);
 				});
 			},

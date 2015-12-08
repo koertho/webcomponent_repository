@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 	keywords.find({}, function(err, keys){
 		if (err) console.err("Fehler beim Abfragen der keys aus der Datenbank: " + err);
 		res.render('keywords', {
-			"title": "Keywords",
+			"title": "Topics",
 			"keys": keys
 		});
 	});

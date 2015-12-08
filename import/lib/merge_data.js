@@ -36,7 +36,7 @@ var do_html = function (html, callback)
 
 var do_jsdoc = function (jsdoc)
 {
-	console.log("JSDOC IN: " + component.name);
+	//console.log("JSDOC IN: " + component.name);
 	async.forEachOf(jsdoc, function(entry, key, cb)
 	{
 		if (entry.kind === "member")
@@ -59,7 +59,6 @@ var do_jsdoc = function (jsdoc)
 								keywords.push(subscription);
 								var entry_length = entries[0].length + entries[1].length + 2;
 								subscription.description = tag.value.slice(entry_length);
-								console.log(subscription.description);
 								component.subscription.push(subscription);
 								break;
 							case "publish":
@@ -70,7 +69,6 @@ var do_jsdoc = function (jsdoc)
 								keywords.push(publish);
 								var entry_length = entries[0].length + entries[1].length + 2;
 								publish.description = tag.value.slice(entry_length);
-								console.log(publish.description);
 								component.publish.push(publish);
 								break;
 								
@@ -126,7 +124,7 @@ var do_jsdoc = function (jsdoc)
 	},
 	function (err)
 	{
-		console.log("JSDOC OUT: " + component.name);
+		//console.log("JSDOC OUT: " + component.name);
 		return;
 	});
 }

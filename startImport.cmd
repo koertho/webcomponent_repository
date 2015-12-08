@@ -1,6 +1,6 @@
 @echo off
 
 cd %~dp0\import\
-node readData.js
+node import.js
 
 pause

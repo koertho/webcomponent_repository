@@ -1,7 +1,10 @@
 
 var db = require('./lib/database.js');
 
-db.components.find({}, function(err, data) {
+
+db.components.find({
+	"methods.params.type.names": "Number"
+}, function(err, data) {
 	console.log(JSON.stringify(data));
 });
 
