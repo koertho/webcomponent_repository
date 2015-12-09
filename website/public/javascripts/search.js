@@ -71,7 +71,9 @@ function search_component(){
 			data.forEach(function(component){
 				table += '<tr>';
 				table += '<td><a href="/components/' + component.name + '">' + component.name + '</a></td>';
-				if (typeof(component.description) !== 'undefined') table += '<td>' + component.description + '</td>';
+				table += '<td>'
+				if (typeof(component.description) !== 'undefined') table += component.description;
+				table += '</td>'
 				table += '</tr>';
 				check.step();
 			});
