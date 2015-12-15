@@ -1,8 +1,11 @@
 extends layout
 
 block content
+	script(src="/javascripts/functions.js")
+
 	div.download
-		a(href="#{component.url}") Download
+		//a(href="", onclick='download("#{component.name}", "#{component.url}");') Download
+		a(href="/download?path=#{encodeURI(component.url)}") Download
 	
 	h2= component.name
 
@@ -27,14 +30,47 @@ block content
 	if component.methods.length
 		h4.entries Methods
 		table.keywords
-			each key in component.methods
+			each method in component.methods
 				tr
-					td= key.name
-					td= key.type
-					td= key.description
+					td
+						if (typeof(method.returns) !== 'undefined')
+							each name, index in method.returns[0].type.names
+								if index > 0 
+									='|'
+								=name
+							= ' '
+						i
+							u
+								= method.name
+						if (typeof(method.params) !== 'undefined')
+							=" ("
+							each param, i in method.params
+								if i > 0
+									= ' , '
+								each type, index in param.type.names
+									if index > 0
+										= '|'
+									i
+										=type
+								if (typeof(param.name) !== 'undefined')
+									=' '
+									=param.name
+								
+									
+							=")"
+					td= method.desc
+					td
+						ul
+							each param in method.params ? method.params : []
+								li
+									=param.type.names[0]
+									=' '
+									=param.description
+								
+							
 	
 	if component.publish.length
-		h4.entries Publish keys
+		h4.entries Publish Topics
 		table.keywords
 			each key in component.publish
 				tr
@@ -43,7 +79,7 @@ block content
 					td= key.description
 					
 	if component.subscription.length
-		h4.entries Subscribe keys
+		h4.entries Subscribe Topics
 		table.keywords
 			each key in component.subscription
 				tr

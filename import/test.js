@@ -1,24 +1,34 @@
-var parser = require('./parser.js');
-var db = require('./database.js');
-var jsonfile = require('jsonfile');
-var async = require('async');
+
+var db = require('./lib/database.js');
 
 
+db.components.dropIndex('$**_text', function(err, data){
+	console.log(data);
+});
 
-db.components.find({
-		"publish_keys": {
-			"$elemMatch":{
-				"name": key
-		}}}, function(err, docs){
-		if (err) console.err("Fehler beim Suchen nach Komponenten in der Datenbank: " + err);
-		console.log(docs)
-	});
+//db.components.index({"name": "text"});
 
+/*
+db.components.indexes(function(err, data){
+	console.log(data);
+});
 
 
 /*
-db.insertSubscribeKeys(subscribe_keys, function(err){
-		if (err) return cb("Failure at writing subscribe keys to the database: " + err);
-		return cb(null);
-	});
+db.components.index({
+	"$**": "text"
+});
+
+db.components.index({"$**": "text"});
+
+db.components.find({
+	"$text": {
+		"$search": "Seite"
+	}
+}, function(err, data) {
+	console.log(JSON.stringify(data));
+});
+
 */
+
+

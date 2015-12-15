@@ -1,0 +1,60 @@
+extends layout
+
+block content
+
+	script(src="/javascripts/jquery-1.11.3.min.js")
+	script(src="/javascripts/search.js")
+	
+	script(type='text/javascript').
+		$(document).ready(chooseCategory());
+
+	h1= title
+	
+	h3= "Volltextsuche"
+	
+	input(id="fulltext_search", type="text", placeholder="Suchebegriff eingeben")
+	
+	button(class="search", onclick="search_fulltext();")= "Suchen"
+	
+	h3= "Suche nach Kategorie"
+	select(id="choose_cat", onchange="chooseCategory();")
+		option(value="properties")= "Eigenschaften"
+		option(value="methods")= "Methoden"
+		option(value="smartComposition")= "SmartCompostion"
+		
+	select(id="properties", style="display: block;")
+		option= "Boolean"
+		option= "Date"
+		option= "Number"
+		option= "String"
+		option= "Array"
+		option= "Object"
+		
+	select(id="methods_in_out", style="display: none;")
+		option(value="params")= "Parameter"
+		option(value="return")= "Rückgabewert"
+		
+	select(id="methods_datatypes", style="display: none;")
+		option= "Boolean"
+		option= "Number"
+		option= "String"
+		option= "Array"
+		option= "Object"
+		
+	select(id="smartComposition_pubsub", style="display: none;", onchange="showTopicSearchBox();")
+		option(value="topic")= "Topic"
+		option(value="publish")= "Publish"
+		option(value="subscribe")= "Subscribe"
+
+	input(id="smartComposition_topic", type="text", placeholder="Topic eingeben", style="display: none;")
+		
+	select(id="smartComposition_type", style="display: none;")
+		option= "Boolean"
+		option= "Number"
+		option= "String"
+		option= "Array"
+		option= "Object"
+		
+	button(class="search", onclick="search_component();")= "Suchen"
+	
+	div(id="results")
