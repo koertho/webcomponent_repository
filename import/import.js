@@ -48,6 +48,9 @@ async.waterfall(
 						jsdoc_content(value.path, function(err, data){
 							return call(err, data);
 						});
+					},
+					path: function(call){
+						return call(null, value.path);
 					}
 				}, 
 				function(err, res){
@@ -57,7 +60,7 @@ async.waterfall(
 						//console.log('Iteration: \n' + JSON.stringify(res.html) + '\n');
 						merge(res.html, res.jsdoc, function(err, component, keywords)
 						{
-							
+							component.url = res.path;
 							db.insertComponent(JSON.parse(JSON.stringify(component)), function(err, data){
 								if (err) return cb("Failure at writing to the database (" + component.name + "): " + err);
 								db.insertKeywords(keywords, function(err){
