@@ -74,6 +74,13 @@ async.waterfall(
 				return callback(null);
 			}
 		)
+	},
+	function(callback){
+		console.log("Creating search index");
+		db.components.index({
+			"$**": "text"
+		});
+		return callback(null);
 	}
 ], 
 function (err, result) {

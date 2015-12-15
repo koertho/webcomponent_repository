@@ -7,6 +7,7 @@ function chooseCategory(){
 			$('#methods_datatypes').css('display','none');
 			$('#smartComposition_pubsub').css('display','none');
 			$('#smartComposition_type').css('display','none');
+			$('#smartComposition_topic').css('display','none');
 			break;
 		case "methods":
 			$('#properties').css('display','none');
@@ -14,42 +15,68 @@ function chooseCategory(){
 			$('#methods_datatypes').css('display','block');
 			$('#smartComposition_pubsub').css('display','none');
 			$('#smartComposition_type').css('display','none');
+			$('#smartComposition_topic').css('display','none');
 			break;
 		case "smartComposition":
 			$('#properties').css('display','none');
 			$('#methods_in_out').css('display','none');
 			$('#methods_datatypes').css('display','none');
 			$('#smartComposition_pubsub').css('display','block');
-			$('#smartComposition_type').css('display','block');
 			break;
 	}
+	showTopicSearchBox();
 };
+
+function showTopicSearchBox(){
+	if ($('#smartComposition_pubsub').css('display') == 'block' && $('#smartComposition_pubsub').val() == 'topic') {
+			$('#smartComposition_topic').css('display','block');
+			$('#smartComposition_type').css('display','none');
+	}
+	else {
+		if ($('#smartComposition_pubsub').css('display') == 'block')
+		{
+			$('#smartComposition_topic').css('display','none');
+			$('#smartComposition_type').css('display','block');
+		}
+	}
+}
+
+
 function search_component(){
 	var cat = $('#choose_cat').val();
 	var params = {}
 	switch(cat){
 		case "properties":
-			var datatype = $('#properties').val();
 			params.cat = "properties";
-			params.datatype = datatype;
+			params.datatype = $('#properties').val();
 			break;
 		case "methods":
-			var in_out = $('#methods_in_out').val();
-			var datatype = $('#methods_datatypes').val();
 			params.cat = "methods";
-			params.in_out = in_out;
-			params.datatype = datatype;
+			params.in_out = $('#methods_in_out').val();
+			params.datatype = $('#methods_datatypes').val();
 			break;
 		case "smartComposition":
-			var pubsub = $('#smartComposition_pubsub').val();
-			var datatype = $('#smartComposition_type').val();
 			params.cat = "smartComposition";
-			params.datatype = datatype;
-			params.pubsub = pubsub;
+			params.pubsub = $('#smartComposition_pubsub').val();
+			params.datatype = $('#smartComposition_type').val();
+			params.search = $('#smartComposition_topic').val();
 			break;
 	}
-	$.get('/search/src', params, function(data){
-		$('#results').html('<h3>Resultate</h3>');
+	$.get('/search/filter', params, function(data){
+		show_results(data);
+	});
+};
+
+function search_fulltext(){
+	var params = {};
+	params.search_query = $('#fulltext_search').val();
+	$.get('/search/query', params, function(data){
+		show_results(data);
+	});
+};
+
+function show_results(data){
+	$('#results').html('<h3>Resultate der letzten Suche</h3>');
 		if (data == null || data.length === 0 ){
 			$('#results').append("<p>Keine Resultate</p>");
 		}
@@ -78,5 +105,4 @@ function search_component(){
 				check.step();
 			});
 		}
-	});
-};
+}

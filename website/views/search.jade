@@ -10,8 +10,14 @@ block content
 
 	h1= title
 	
-	h3= "Suchkategorie auswählen"
-	select(id="choose_cat",onchange="chooseCategory(this.value);")
+	h3= "Volltextsuche"
+	
+	input(id="fulltext_search", type="text", placeholder="Suchebegriff eingeben")
+	
+	button(class="search", onclick="search_fulltext();")= "Suchen"
+	
+	h3= "Suche nach Kategorie"
+	select(id="choose_cat", onchange="chooseCategory();")
 		option(value="properties")= "Eigenschaften"
 		option(value="methods")= "Methoden"
 		option(value="smartComposition")= "SmartCompostion"
@@ -35,9 +41,12 @@ block content
 		option= "Array"
 		option= "Object"
 		
-	select(id="smartComposition_pubsub", style="display: none;")
+	select(id="smartComposition_pubsub", style="display: none;", onchange="showTopicSearchBox();")
+		option(value="topic")= "Topic"
 		option(value="publish")= "Publish"
 		option(value="subscribe")= "Subscribe"
+
+	input(id="smartComposition_topic", type="text", placeholder="Topic eingeben", style="display: none;")
 		
 	select(id="smartComposition_type", style="display: none;")
 		option= "Boolean"

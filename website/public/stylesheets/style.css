@@ -94,6 +94,13 @@ select {
 	float: left;
 }
 
+input {
+	margin: 0px 5px 5px 0px;
+	padding: 5px;
+	font-size: 1.1em;
+	float: left;
+}
+
 button.search {
 	font-size: 1.1em;
 	padding: 5px;
