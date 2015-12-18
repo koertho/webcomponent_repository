@@ -55,12 +55,12 @@ Enthält eine Component keine Beschreibungen, können trotzdem Name und Eigensch
 
 ### Vorraussetzungen
 
-* node.js (entwickelt und getested mit Version 4.2.1)
+* node.js (entwickelt und getestet mit Version 4.2.1)
 * MongoDB (entwickelt und getestet mit Version 3.0.7)
 
 ### Einrichtung
 
-#### 1. Download
+#### 1. Download und Einrichten
 
 Laden sie die Daten herunter und entpacken Sie die diese in ein beliebiges Verzeichnis. 
 Die Verzeichnisstruktur sollte wie folgt aussehen:
@@ -71,11 +71,13 @@ webcomponent_repository
 - website
 ```
 
+Laden Sie die nötigen Packages herunter, in dem Sie in beiden Unterverzeichnissen `npm install` ausführen.
+
 #### 2. Einrichten und starten der Datenbank
 
 Davon ausgehend, dass Sie die Datenbank installiert haben.
 
-Unter Windows (Batch-Datei:
+Unter Windows (Batch-Datei):
 * Bei der ersten Verwendung
 	* Öffnen Sie die enthaltene `startMongoDB.cmd` und passen Sie den Pfad zur MongoDB-Installation an (`SET mongoPath=D:\Path\to\MongoDB\`)
 * Führen sie `startMongoDB.cmd` aus und lassen Sie das Fenster während der gesamten Verwendung offen

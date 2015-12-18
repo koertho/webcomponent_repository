@@ -4,7 +4,6 @@ block content
 	script(src="/javascripts/functions.js")
 
 	div.download
-		//a(href="", onclick='download("#{component.name}", "#{component.url}");') Download
 		a(href="/download?path=#{encodeURI(component.url)}") Download
 	
 	h2= component.name
@@ -13,22 +12,22 @@ block content
 	
 	if component.author
 		p
-			b= "Author: "
+			b= "Autor: "
 			= component.author
 	
 	hr
 	
 	if component.properties.length
-		h4.entries Properties
+		h4.entries Eigenschaften
 		table.keywords
 			each key in component.properties
 				tr
 					td= key.name
 					td= key.type
-					td= key.description
+					td= key.desc
 	
 	if component.methods.length
-		h4.entries Methods
+		h4.entries Methoden
 		table.keywords
 			each method in component.methods
 				tr
@@ -60,17 +59,17 @@ block content
 							=")"
 					td= method.desc
 					td
-						ul
-							each param in method.params ? method.params : []
-								li
-									=param.type.names[0]
-									=' '
-									=param.description
+						each param in method.params ? method.params : []
+							b= param.name
+							b= ':'
+							=' '
+							=param.description
+							br
 								
 							
 	
 	if component.publish.length
-		h4.entries Publish Topics
+		h4.entries Publizierte Topics
 		table.keywords
 			each key in component.publish
 				tr
@@ -79,7 +78,7 @@ block content
 					td= key.description
 					
 	if component.subscription.length
-		h4.entries Subscribe Topics
+		h4.entries Abonnierte Topics
 		table.keywords
 			each key in component.subscription
 				tr

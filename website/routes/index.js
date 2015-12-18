@@ -29,21 +29,8 @@ router.get('/components/:component', function(req, res, next) {
 	
 })
 
-
 router.get('/download', function(req, res, next) {
-	
 	res.download(decodeURI(req.query.path));
-	
-	/*
-	fs.readFile('../../polymer-examples/semantic-extraction-element.html', 'utf-8', function (err, html) {console.log(html)});
-
-	var http = require('http');
-	var fs = require('fs');
-	var request = require("request");
-	*/
 });
 
-
 module.exports = router;
-
-
