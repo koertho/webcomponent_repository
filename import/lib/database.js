@@ -1,17 +1,12 @@
 var async = require('async');
-var mongo = require('mongodb');
 var db = require('monk')('127.0.0.1:27017/components_db');
 var components = db.get('components');
-var publish_keys = db.get('publish_keys');
-var subscribe_keys = db.get('subscripe_keys');
 var keywords = db.get('keywords');
 
 module.exports = {
 	
 	connection: db,
 	components: components,
-	publish_keys: publish_keys,
-	subscribe_keys: subscribe_keys,
 	keywords: keywords,
 	insertComponent: function(component, callback)
 	{
@@ -25,19 +20,6 @@ module.exports = {
 			if (err) return callback(err);
 			keywords.remove({}, function(err){
 				return callback(err);
-			})
-		})
-	},
-	deleteAllComponents: function(callback)
-	{
-		components.remove({}, function(err)
-		{
-			if (err) return callback(err);
-			publish_keys.remove({}, function(err){
-				if (err) return callback(err);
-				subscribe_keys.remove({}, function(err){
-					return callback(err);
-				})
 			})
 		})
 	},

@@ -1,13 +1,14 @@
-{
+npm {
   "name": "web_component_repository_import",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "An importer for for web component repository.",
   "main": "readData.js",
   "dependencies": {
     "async": "^1.5.0",
     "htmlparser2": "^3.8.3",
     "jsdoc-parse": "^1.1.1",
-    "jsonfile": "^2.2.3"
+    "jsonfile": "^2.2.3",
+	"monk": "^1.0.1"
   },
   "devDependencies": {},
   "scripts": {
