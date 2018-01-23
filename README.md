@@ -1,5 +1,7 @@
 # webcomponent_repository
 
+> This repository is no longer maintained.
+
 Dieses Repository ist das Ergebniss eines Forschungsprojektes an der [TU Chemnitz](http://tu-chemnitz.de). 
 Das Ziel ist die Entwicklung einer Schnittstellenbeschreibungssprache von Web Components unter Berücksichtigung der
 [`Polymer.SmartComponentBehavior`](https://github.com/michikrug/SmartComposition) Erweiterung.
